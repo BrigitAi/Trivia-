@@ -12,7 +12,8 @@ alter table public.quiz_guests enable row level security;
 revoke all on public.quiz_guests from anon, authenticated;
 
 insert into public.quiz_guests (email, name) values
-  ('carlos@elveygroup.com', 'Carlos')
+  ('carlos@elveygroup.com', 'Carlos'),
+  ('natasha@elveygroup.com', 'Natasha')
 on conflict (email) do update set name = excluded.name;
 
 create or replace function public.quiz_is_guest()

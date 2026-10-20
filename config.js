@@ -16,5 +16,5 @@ window.QUIZ_CONFIG = {
   adminEmails: ["sysproai@elveygroup.com"],
   // Guests: non-Brigit people who may play (not review). They must also be listed
   // in the quiz_guests table (supabase/guests.sql).
-  guestEmails: ["carlos@elveygroup.com"]
+  guestEmails: ["carlos@elveygroup.com", "natasha@elveygroup.com"]
 };
