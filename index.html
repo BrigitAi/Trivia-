@@ -222,6 +222,36 @@
   .feedback .btn { margin-top: 8px; }
   .ref { color: var(--gold); font-size: 14px; }
 
+  /* ---------- Compact question screen (easier to read long questions) ---------- */
+  #game { max-width: 860px; margin: 0 auto; }
+  .scoreboard { padding: 6px; gap: 6px; margin-bottom: 8px; border-radius: 12px; }
+  .sb { padding: 2px 10px; min-width: 60px; }
+  .sb small { font-size: 9px; }
+  .sb b { font-size: 18px; }
+  .sb.score b { font-size: 22px; }
+  .sb.cat b { font-size: 14px; }
+  /* the Race tile shares the .cat name with the home-screen race cards: undo their size, border and hover */
+  .sb.cat { min-height: 0; border: 0; gap: 0; align-items: stretch; box-shadow: none; cursor: default; transform: none; }
+  .sb.cat:hover { transform: none; border: 0; box-shadow: none; }
+  .scoreboard { align-items: center; }
+  #quit { padding: 6px 12px; font-size: 13px; }
+  .dots { margin-bottom: 8px; }
+  .dots i { width: 16px; height: 4px; }
+  .timer { height: 6px; margin-bottom: 4px; }
+  .timerow { margin-bottom: 8px; font-size: 11px; }
+  .qcard { padding: 14px 16px; border-radius: 14px; }
+  #qcat { font-size: 11px; padding: 2px 8px; }
+  #question { font-size: clamp(16px, 1.9vw, 20px); line-height: 1.4; margin: 8px 0 12px; max-width: 70ch; }
+  .answers { grid-template-columns: 1fr; gap: 8px; }
+  .ans { padding: 9px 12px; min-height: 0; font-size: 15px; line-height: 1.35; gap: 10px; border-radius: 10px; }
+  .ans .lt { flex: 0 0 28px; height: 28px; font-size: 15px; border-radius: 7px; }
+  .ans.correct .lt::after, .ans.wrong .lt::after { font-size: 15px; }
+  .pop { font-size: 18px; }
+  .feedback { margin-top: 10px; padding: 10px 14px; border-radius: 12px; }
+  .feedback h3 { font-size: 18px; }
+  .feedback p { margin: 4px 0; font-size: 14px; line-height: 1.4; }
+  .feedback .btn { margin-top: 4px; }
+
   /* ---------- Results ---------- */
   .results { text-align: center; }
   .final { display: inline-block; margin: 10px 0 6px; padding: 18px 40px; border-radius: 18px; background: var(--navy); border: 2px solid var(--brand); box-shadow: 0 10px 30px color-mix(in srgb, var(--brand) 25%, transparent); }

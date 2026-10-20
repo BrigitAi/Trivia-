@@ -436,6 +436,8 @@
       (q.ref ? `<p class="ref">📄 ${esc(q.ref)}</p>` : "") +
       `<button class="btn go" id="next">${last ? "Cross the finish line 🏁" : "Next lap →"}</button>`;
     fb.hidden = false;
+    // keep the explanation and Next button on screen without the player having to scroll
+    requestAnimationFrame(() => fb.scrollIntoView({ behavior: "smooth", block: "nearest" }));
     $("#next").onclick = () => { if (last) finish(); else { st.i++; renderQ(); } };
     $("#next").focus({ preventScroll: true });
   }
