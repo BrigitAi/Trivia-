@@ -2,8 +2,12 @@
 -- Brigit Trivia League — registered players list for approvers
 -- Run once in the Supabase SQL editor (after schema.sql and sectors.sql). Safe to re-run.
 -- Only approvers get results; everyone else gets an error.
--- Lists Brigit emails and approvers only (this Supabase project is shared with ASH).
+-- Lists Brigit emails, approvers and guests only (this Supabase project is shared with ASH).
 -- =====================================================================
+create table if not exists public.quiz_guests (email text primary key, name text, added_at timestamptz not null default now());
+alter table public.quiz_guests enable row level security;
+revoke all on public.quiz_guests from anon, authenticated;
+
 drop function if exists public.quiz_registered_players();
 create function public.quiz_registered_players()
 returns table (
@@ -29,6 +33,7 @@ begin
     ) r on r.uid = u.id
     where u.email ilike '%@brigit.co.za'
        or lower(u.email::text) in (select lower(a.email) from public.quiz_approvers a)
+       or lower(u.email::text) in (select lower(g.email) from public.quiz_guests g)
     order by u.created_at desc;
 end $$;
 revoke all on function public.quiz_registered_players() from public, anon;

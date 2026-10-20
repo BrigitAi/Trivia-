@@ -52,6 +52,7 @@ After every answer the explanation and reference (SANS standard, SDS section, ma
 | `supabase/stats.sql` | Stats views for ASH and reports, plus the per-answer log (run once) |
 | `supabase/divisions.sql` | Business divisions (Finance/Admin, Procurement, Production, Sales); lists live in `quiz_sector_list()` / `quiz_division_list()` (run once) |
 | `supabase/generators.sql` | Who may generate questions (`quiz_generators`), Deon as approver, Operations division (run once) |
+| `supabase/guests.sql` | Guests: non-Brigit people who may play, e.g. carlos@elveygroup.com (run once) |
 | `supabase/generate.sql` | Support for the question generator (run once after schema.sql) |
 | `supabase/functions/quiz-generate/index.ts` | Edge Function that writes new draft questions with AI |
 

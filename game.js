@@ -25,7 +25,7 @@
   const FROM_RESET_LINK = /type=recovery/.test(location.hash);   // read before Supabase clears the address
   const db = ONLINE ? window.supabase.createClient(CFG.supabaseUrl, CFG.supabaseAnonKey, { auth: { flowType: "implicit", persistSession: true, detectSessionInUrl: true } }) : null;
   const EMAIL_DOMAIN = (CFG.emailDomain || "brigit.co.za").toLowerCase();
-  const ADMIN_EMAILS = (CFG.adminEmails || []).map(e => String(e).trim().toLowerCase());
+  const ADMIN_EMAILS = [...(CFG.adminEmails || []), ...(CFG.guestEmails || [])].map(e => String(e).trim().toLowerCase());
   let user = null, profile = null, isApprover = false, GAMES = [], DRAFTS = {};
 
   /* ---------------- Fire-protection icon set ---------------- */

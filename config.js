@@ -13,5 +13,8 @@ window.QUIZ_CONFIG = {
   emailDomain: "brigit.co.za",
   // Admins who may sign in with a non-Brigit address. They must also be listed
   // in the quiz_approvers table, or the database will not let them in.
-  adminEmails: ["sysproai@elveygroup.com"]
+  adminEmails: ["sysproai@elveygroup.com"],
+  // Guests: non-Brigit people who may play (not review). They must also be listed
+  // in the quiz_guests table (supabase/guests.sql).
+  guestEmails: ["carlos@elveygroup.com"]
 };
