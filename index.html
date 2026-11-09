@@ -318,9 +318,19 @@
   .pod.p1 .ppts { color: #f5c542; } .pod.p2 .ppts { color: #dfe4ea; } .pod.p3 .ppts { color: #e6a26b; }
   .pod.mine { outline: 2px solid var(--brand); outline-offset: 2px; }
   @media (max-width: 480px) { .pod .pname { font-size: 15px; } .pod .ppts { font-size: 18px; } }
+
+  /* ===== Back to the Brigit Hub ===== */
+  .hub-pill { position: fixed; top: 12px; right: 12px; z-index: 50; display: inline-flex; align-items: center; gap: 6px;
+    padding: 5px 12px; border-radius: 999px; border: 1px solid #1fd6c4; color: #1fd6c4 !important; background: rgba(6,15,22,.85);
+    font: 600 12px/1 Inter, system-ui, "Segoe UI", sans-serif; text-decoration: none; backdrop-filter: blur(4px); }
+  .account { padding-right: 120px; }
+  .hub-pill:hover { background: rgba(31,214,196,.12); }
+  .hub-pill svg { width: 14px; height: 14px; }
+  @media (max-width: 480px) { .hub-pill { top: 8px; right: 8px; padding: 4px 10px; } }
 </style>
 </head>
 <body>
+<a class="hub-pill" href="https://brigit-connect-hub.base44.app/" title="Back to the Brigit Hub"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Brigit Hub</a>
 <div class="wrap">
 
   <div id="loading" class="loading"><span data-icon="flame"></span><p>Warming up…</p></div>
