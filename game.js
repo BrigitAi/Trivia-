@@ -274,21 +274,43 @@
     $("#board").closest("table").classList.toggle("divisions", boardView === "divisions");
     $("#board-sector").hidden = boardView !== "players";
     $("#board-division").hidden = boardView !== "players";
+    if (boardView !== "players") { const pd = $("#podium"); if (pd) { pd.hidden = true; pd.innerHTML = ""; } }
     if (boardView === "sectors") return renderSectorBoard();
     if (boardView === "divisions") return renderGroupBoard("Division", divisionStandings(boardRange, boardRace), profile && profile.division ? [profile.division] : []);
     $("#board-head").innerHTML = `<tr><th></th><th>Competitor</th><th class="num">Races</th><th class="num hide-sm">Accuracy</th><th class="num hide-sm">PB</th><th class="num">Points</th></tr>`;
     const me = myPid();
     const list = standings(boardRange, boardSector, boardRace, boardDivision);
-    $("#board").innerHTML = list.length
-      ? list.slice(0, 20).map((p, i) => {
-          const medal = ["🥇", "🥈", "🥉"][i] || `<span class="pos">${i + 1}</span>`;
+    renderPodium(list.slice(0, 3), me);
+    const rest = list.slice(3, 20);
+    $("#board").innerHTML = rest.length
+      ? rest.map((p, j) => { const i = j + 3;
+          const medal = `<span class="pos">${i + 1}</span>`;
           const acc = p.asked ? Math.round(p.correct / p.asked * 100) : 0;
           return `<tr class="${p.pid === me ? "mine" : ""} ${i < 3 ? "top" : ""}">
             <td class="r">${medal}</td><td class="n">${esc(p.name)}${p.sector ? `<small class="sec">${esc(p.sector)}${p.division ? " · " + esc(p.division) : ""}</small>` : ""}</td>
             <td class="num">${p.games}</td><td class="num hide-sm">${acc}%</td><td class="num hide-sm">${pts(p.best)}</td>
             <td class="num tot">${pts(p.total)}</td></tr>`;
         }).join("")
-      : `<tr><td colspan="6" class="empty">No ${boardRace ? esc(raceName(boardRace)) + " " : ""}races yet${boardSector ? " for " + esc(boardSector) : ""}${boardDivision ? " in " + esc(boardDivision) : ""} this period — first to the start line takes top spot!</td></tr>`;
+      : list.length ? "" : `<tr><td colspan="6" class="empty">No ${boardRace ? esc(raceName(boardRace)) + " " : ""}races yet${boardSector ? " for " + esc(boardSector) : ""}${boardDivision ? " in " + esc(boardDivision) : ""} this period — first to the start line takes top spot!</td></tr>`;
+  }
+
+  function renderPodium(top, me) {
+    const pd = $("#podium");
+    if (!pd) return;
+    if (!top.length) { pd.hidden = true; pd.innerHTML = ""; return; }
+    const slot = (p, place) => {
+      if (!p) return "<div></div>";
+      const acc = p.asked ? Math.round(p.correct / p.asked * 100) : 0;
+      return '<div class="pod p' + place + (p.pid === me ? ' mine' : '') + '">' +
+        '<div class="medal">' + ["🥇", "🥈", "🥉"][place - 1] + '</div>' +
+        '<div class="pname">' + esc(p.name) + '</div>' +
+        '<div class="psec">' + (p.sector ? esc(p.sector) : '') + '</div>' +
+        '<div class="ppts">' + pts(p.total) + '</div>' +
+        '<div class="pmeta">' + p.games + ' race' + (p.games === 1 ? '' : 's') + ' · ' + acc + '%</div>' +
+        '<div class="step">' + place + '</div></div>';
+    };
+    pd.innerHTML = slot(top[1], 2) + slot(top[0], 1) + slot(top[2], 3);
+    pd.hidden = false;
   }
 
   function renderGroupBoard(label, list, mine) {

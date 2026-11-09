@@ -299,6 +299,25 @@
     .sb b { font-size: 22px; }
     .sb.score b { font-size: 26px; }
   }
+
+  /* ===== Podium (top 3) ===== */
+  .podium { display: grid; grid-template-columns: 1fr 1.15fr 1fr; align-items: end; gap: 12px; max-width: 560px; margin: 8px auto 18px; padding: 0 6px; }
+  .pod { position: relative; text-align: center; border-radius: 16px; padding: 14px 8px 0; background: linear-gradient(180deg, var(--panel2), var(--panel)); border: 2px solid var(--line); overflow: hidden; }
+  .pod .medal { font-size: 30px; line-height: 1; }
+  .pod .pname { font-family: var(--head); font-size: 18px; letter-spacing: .02em; margin: 6px 0 2px; overflow-wrap: anywhere; }
+  .pod .psec { color: var(--muted); font-size: 11px; min-height: 14px; }
+  .pod .ppts { font-family: var(--head); font-size: 22px; margin-top: 6px; }
+  .pod .pmeta { color: var(--muted); font-size: 11px; }
+  .pod .step { margin: 10px -8px 0; font-family: var(--head); font-size: 22px; color: #0b1620; display: grid; place-items: center; }
+  .pod.p1 { border-color: #f5c542; box-shadow: 0 0 0 1px #f5c54255, 0 0 22px #f5c54240; }
+  .pod.p1 .step { height: 64px; background: linear-gradient(135deg, #fff1b8, #f5c542 45%, #c8961e); }
+  .pod.p2 { border-color: #c7ced8; box-shadow: 0 0 0 1px #c7ced855, 0 0 18px #c7ced833; }
+  .pod.p2 .step { height: 44px; background: linear-gradient(135deg, #ffffff, #c7ced8 45%, #8e98a6); }
+  .pod.p3 { border-color: #d08a4e; box-shadow: 0 0 0 1px #d08a4e55, 0 0 18px #d08a4e33; }
+  .pod.p3 .step { height: 30px; background: linear-gradient(135deg, #ffd9b8, #d08a4e 45%, #9a5a26); }
+  .pod.p1 .ppts { color: #f5c542; } .pod.p2 .ppts { color: #dfe4ea; } .pod.p3 .ppts { color: #e6a26b; }
+  .pod.mine { outline: 2px solid var(--brand); outline-offset: 2px; }
+  @media (max-width: 480px) { .pod .pname { font-size: 15px; } .pod .ppts { font-size: 18px; } }
 </style>
 </head>
 <body>
@@ -433,6 +452,7 @@
             <button class="tab" data-range="all">All time</button>
           </div>
         </div>
+        <div id="podium" class="podium" hidden></div>
         <table>
           <thead id="board-head"></thead>
           <tbody id="board"></tbody>
