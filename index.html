@@ -293,11 +293,15 @@
     table { font-size: 14px; }
     .me, .stats { grid-template-columns: repeat(2, 1fr); }
     .hide-sm { display: none; }
-    .scoreboard { grid-template-columns: 1fr 1fr 1fr; }
-    .sb.cat { grid-column: 1 / -1; order: -1; }
-    #quit { grid-column: 1 / -1; }
-    .sb b { font-size: 22px; }
-    .sb.score b { font-size: 26px; }
+    /* phone: score bar stays visible at the top while playing (one compact row) */
+    .scoreboard { grid-template-columns: minmax(0,1fr) auto auto auto auto; position: sticky; top: 40px; z-index: 40; box-shadow: 0 6px 16px #00000066; }
+    .sb.cat { min-width: 0; }
+    .sb { min-width: 0; padding: 2px 8px; }
+    .sb small { font-size: 8px; }
+    #quit { padding: 6px 10px; font-size: 12px; }
+    .sb b { font-size: 17px; }
+    .sb.score b { font-size: 22px; }
+    .sb.cat b { font-size: 12px; }
   }
 
   /* ===== Podium (top 3) ===== */
